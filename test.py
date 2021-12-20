@@ -9,20 +9,20 @@ def test_MonoPizza():
 
     browser = webdriver.Chrome(options=chrome_options)
     browser.get('https://odesa.monopizza.com.ua/')
-    browser.implicitly_wait(100)
+    browser.implicitly_wait(200)
 
-    confirmCity = browser.find_element(By.XPATH,
-                                       '//*[@id="main"]/div[3]/header/div/div[1]/div[1]/div/div[1]/div[1]/div/div[2]/div[2]/button[2]/span[1]').click()
-    section = browser.find_element(By.XPATH, '//*[@id="main"]/div[3]/header/div/div[1]/div[3]/div/div/a[2]').click()
-    selectPizza = browser.find_element(By.XPATH,
-                                       '//*[@id="main"]/main/div/div[2]/div[2]/div/div/div[1]/div[1]/span/img').click()
-    confirmPizza = browser.find_element(By.XPATH,
-                                        '//*[@id="main"]/main/div/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/button/span[1]').click()
-    cart = browser.find_element(By.XPATH,
-                                '//*[@id="main"]/div[3]/header/div/div[1]/div[1]/div/div[3]/a/div/img').click()
+    confirmCity = browser.find_element(By.LINK_TEXT,
+                                       'Да, спасибо').click()
+    section = browser.find_element(By.LINK_TEXT, 'Пицца').click()
+    selectPizza = browser.find_element(By.LINK_TEXT,
+                                       'Пицца 4 мяса').click()
+    confirmPizza = browser.find_element(By.LINK_TEXT,
+                                        'В корзину').click()
+    cart = browser.find_element(By.LINK_TEXT,
+                                'Корзина').click()
 
-    result = browser.find_element(By.XPATH,
-                                  '//*[@id="main"]/main/div/div[1]/div[1]/div/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div')
+    result = browser.find_element(By.LINK_TEXT,
+                                  '219 грн')
 
     assert result.tag_name == "div"
     assert result.text == "219 грн"
