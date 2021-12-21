@@ -24,7 +24,7 @@ def test_MonoPizza():
     result = browser.find_element(By.LINK_TEXT,
                                   '219 грн')
 
-    assert result.tag_name == "div"
-    assert result.text == "219 грн"
+    assert result.tag_name == "span"
+    assert 'грн' in result.text
 
     browser.quit()
