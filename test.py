@@ -4,27 +4,27 @@ from selenium.webdriver.chrome.options import Options
 
 def test_MonoPizza():
 
-    chrome_options = Options()
-    chrome_options.add_experimental_option("detach", True)
+    CHROME_OPTIONS = Options()
+    CHROME_OPTIONS.add_experimental_option("detach", True)
 
-    browser = webdriver.Chrome(options=chrome_options)
-    browser.get('https://odesa.monopizza.com.ua/')
-    browser.implicitly_wait(200)
+    BROWSER = webdriver.Chrome(options=CHROME_OPTIONS)
+    BROWSER.get('https://odesa.monopizza.com.ua/')
+    BROWSER.implicitly_wait(200)
 
-    confirmCity = browser.find_element(By.LINK_TEXT,
+    confirm_city_button = BROWSER.find_element(By.LINK_TEXT,
                                        'Да, спасибо').click()
-    section = browser.find_element(By.LINK_TEXT, 'Пицца').click()
-    selectPizza = browser.find_element(By.LINK_TEXT,
+    select_section_button = BROWSER.find_element(By.LINK_TEXT, 'Пицца').click()
+    select_pizza_button = BROWSER.find_element(By.LINK_TEXT,
                                        'Пицца 4 мяса').click()
-    confirmPizza = browser.find_element(By.LINK_TEXT,
+    confirm_pizza_button = BROWSER.find_element(By.LINK_TEXT,
                                         'В корзину').click()
-    cart = browser.find_element(By.LINK_TEXT,
+    select_cart_button = BROWSER.find_element(By.LINK_TEXT,
                                 'Корзина').click()
 
-    result = browser.find_element(By.LINK_TEXT,
-                                  '219 грн')
+    result_label = BROWSER.find_element(By.ID,
+                                  'summary-prize')
 
-    assert result.tag_name == "span"
-    assert 'грн' in result.text
+    assert result_label.tag_name == "span"
+    assert 'грн' in result_label.text
 
-    browser.quit()
+    BROWSER.quit()
